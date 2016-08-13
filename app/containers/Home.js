@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ReactNative from 'react-native';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import ReactNative from 'react-native'
+import { bindActionCreators } from 'redux'
 const {
 	Image,
 	Text,
 	View,
 	StyleSheet,
-} = ReactNative;
+} = ReactNative
 
-import { ActionCreators } from 'VeganFriendly/app/actions';
-import Search from 'VeganFriendly/app/components/Search';
-import Card from 'VeganFriendly/app/containers/Card';
+import { ActionCreators } from 'VeganFriendly/app/actions'
+import Search from 'VeganFriendly/app/components/Search'
+import Card from 'VeganFriendly/app/containers/Card'
 import SharedStyles from 'VeganFriendly/app/styles'
+
+import RecipesModule from 'VeganFriendly/app/modules/index.recipes'
 
 const buttonSize = 80;
 
@@ -31,21 +33,16 @@ class Home extends Component {
 	  super(props);
 	}
 
+	_getCards() {
+		return new RecipesModule().getCard()
+	}
+
 	render() {
 		return (
 			<View style={[SharedStyles.fullScreenComponent, 
 				{backgroundColor: '#dedede'}]}>
 				<View style={[SharedStyles.fullScreenComponent, styles.cardContainer]}>
-					<Card 
-						style={ styles.card }
-						linkText={ 'מתכונים' } 
-						cornerText={ '104' }
-						showCorner={ true }
-						onPress={ () => {console.log('heeeyyy')} }>
-						<Image
-							source={require('VeganFriendly/app/res/img/food.png')}
-							style={{height: 170, resizeMode: 'cover', flex: 1}}/>
-					</Card>
+					{this._getCards()}
 				</View>
 				<Search
 					onPress={ () => { this.props.toggleSearch('a', ['a'], 10, 4) } } />

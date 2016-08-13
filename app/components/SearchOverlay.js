@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
 		paddingTop: 0,
 		flex: 1,
 		height: 220,
-		fontFamily: 'Heebo',
+		fontFamily: 'heebo',
 	},
 	searchTextTitle: {
-		fontFamily: 'Heebo-Regular',
+		fontFamily: 'Arial',
 		color: '#888',
 		fontSize: 26,
 		alignSelf: 'flex-end',

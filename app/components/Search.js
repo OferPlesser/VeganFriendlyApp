@@ -55,7 +55,7 @@ class Search extends Component {
 			<View style={[SharedStyles.fullScreenComponent]}>
 				<SearchOverlay 
 					visible={this.props.searching} 
-					backgroundStyle={{backgroundColor: 'rgba(255,255,255,0.9)'}} 
+					backgroundStyle={{backgroundColor: '#f8f8f8'}} 
 					titleText={'חפש הכל'}/>
 				<View style={styles.searchButtonContainer}>
 					<Button 

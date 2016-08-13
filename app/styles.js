@@ -11,4 +11,12 @@ export default {
 		right: 0,
 		top: 0,
 	},
+	card: {
+		elevation: 40,
+	},
+	cardBanner: {
+		height: 170, 
+		resizeMode: 'cover', 
+		flex: 1,
+	},
 }
