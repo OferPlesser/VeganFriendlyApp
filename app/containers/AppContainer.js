@@ -6,7 +6,7 @@ import Home from './Home';
 
 export default class AppContainer extends Component {
   render() {
-    return <Home>hello</Home>;
+    return <Home />;
   }
 }
 

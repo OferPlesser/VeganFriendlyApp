@@ -32,4 +32,5 @@ public class MainApplication extends Application implements ReactApplication {
   public ReactNativeHost getReactNativeHost() {
       return mReactNativeHost;
   }
+
 }
