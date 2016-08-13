@@ -20,7 +20,7 @@ function configureStore(initialState) {
   return createStore(reducer, initialState, enhancer);
 }
 
-const store = createStore(reducer, {}, );
+const store = configureStore({});
 
 const App = () => (
   <Provider store={store}>

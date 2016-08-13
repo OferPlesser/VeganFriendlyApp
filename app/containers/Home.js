@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactNative from 'react-native';
+import { bindActionCreators } from 'redux';
 const {
 	Image,
 	Text,
@@ -8,6 +9,7 @@ const {
 	StyleSheet,
 } = ReactNative;
 
+import { ActionCreators } from 'VeganFriendly/app/actions';
 import Search from 'VeganFriendly/app/components/Search';
 import Card from 'VeganFriendly/app/containers/Card';
 import SharedStyles from 'VeganFriendly/app/styles'
@@ -45,14 +47,15 @@ class Home extends Component {
 							style={{height: 170, resizeMode: 'cover', flex: 1}}/>
 					</Card>
 				</View>
-				<Search />
+				<Search
+					onPress={ () => { this.props.toggleSearch('a', ['a'], 10, 4) } } />
 			</View>
 		);
 	}
 }
 
-function mapStateToProps(state) {
-	return {};
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect((state) => { return state; }, mapDispatchToProps)(Home);

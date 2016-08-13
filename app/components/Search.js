@@ -44,32 +44,22 @@ class Search extends Component {
 	constructor(props) {
 	  super(props);
 
-	  this.state = {
-	  	searching: false,
-	  };
-
 	  UIManager.setLayoutAnimationEnabledExperimental(true);
 	}
 
-	searchPressed() {
-		this.setState({
-			searching: !this.state.searching
-		});
-	}
-
 	render() {
-		var searchButtonStyles = this.state.searching ? 
+		var searchButtonStyles = this.props.searching ? 
 			{ flex: 1, margin: 0 } : {};
 
 		return (
 			<View style={[SharedStyles.fullScreenComponent]}>
 				<SearchOverlay 
-					visible={this.state.searching} 
+					visible={this.props.searching} 
 					backgroundStyle={{backgroundColor: 'rgba(255,255,255,0.9)'}} 
 					titleText={'חפש הכל'}/>
 				<View style={styles.searchButtonContainer}>
 					<Button 
-						onPress={ () => {this.searchPressed()} }
+						onPress={ () => this.props.onPress() }
 						style={[styles.searchButton, searchButtonStyles]}>
 						<Image 
 							style={styles.buttonImage}
@@ -83,7 +73,9 @@ class Search extends Component {
 }
 
 function mapStateToProps(state) {
-	return {};
+	return {
+		searching: state.search.searching
+	};
 }
 
 export default connect(mapStateToProps)(Search);
