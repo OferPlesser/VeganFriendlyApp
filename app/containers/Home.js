@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactNative from 'react-native';
 const {
+	Image,
 	Text,
 	View,
 	StyleSheet,
 } = ReactNative;
+
 import Search from 'VeganFriendly/app/components/Search';
+import Card from 'VeganFriendly/app/containers/Card';
 
 const buttonSize = 80;
 
@@ -28,6 +31,14 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		top: 0,
+	},
+	cardContainer: {
+		backgroundColor: '#dedede',
+		margin: 20,
+		flex: 1,
+	},
+	card: {
+		
 	}
 });
 
@@ -37,9 +48,18 @@ class Home extends Component {
 	}
 
 	render() {
-	return (
-			<View style={styles.fullScreenComponent}>
-				<Search />
+		return (
+			<View style={[styles.fullScreenComponent, styles.cardContainer]}>
+				<Card 
+					style={ styles.card } 
+					linkText={ 'מתכונים' } 
+					cornerText={ '104' }
+					showCorner={ true }
+					onPress={ () => {console.log('heeeyyy')} }>
+					<Image
+						source={require('VeganFriendly/app/res/img/food.jpeg')}
+						style={{height: 170}}/>
+				</Card>
 			</View>
 		);
 	}
