@@ -16,11 +16,11 @@ const buttonSize = 80;
 
 const styles = StyleSheet.create({
 	cardContainer: {
-		margin: 20,
+		margin: 40,
 		flex: 1,
 	},
 	card: {
-		
+		elevation: 40,
 	}
 });
 
@@ -41,8 +41,8 @@ class Home extends Component {
 						showCorner={ true }
 						onPress={ () => {console.log('heeeyyy')} }>
 						<Image
-							source={require('VeganFriendly/app/res/img/food.jpeg')}
-							style={{height: 170}}/>
+							source={require('VeganFriendly/app/res/img/food.png')}
+							style={{height: 170, resizeMode: 'cover', flex: 1}}/>
 					</Card>
 				</View>
 				<Search />

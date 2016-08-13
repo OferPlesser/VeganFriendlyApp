@@ -15,17 +15,18 @@ export default class Card extends Component {
 	}
 
 	_getCardCorner() {
-		if (this.props.showCorner) {
-			return (
-				<View style={styles.cardCorner}>
-					<Text 
-						style={[{fontSize: 18}, 
-							this.props.cornerTextStyle]}>
-						{this.props.cornerText}
-					</Text>
-				</View>
-			);
+		if (!this.props.showCorner) {
+			return null;
 		}
+
+		return (
+			<View style={styles.cardCorner}>
+				<Text 
+					style={[this.props.cornerTextStyle]}>
+					{this.props.cornerText}
+				</Text>
+			</View>
+		);
 	}
 
 	render() {
@@ -34,7 +35,7 @@ export default class Card extends Component {
 				<View style={styles.card}>
 					<View style={styles.cardInner}>
 						<View style={styles.cardContent}>
-							{this._getCardCorner}
+							{this._getCardCorner()}
 							{this.props.children}
 						</View>
 						<View style={[styles.rightWhite, 
@@ -60,6 +61,9 @@ export default class Card extends Component {
 	}
 }
 
+const CARD_OFFSET_X = 20;
+const CARD_OFFSET_Y = 60;
+
 const styles = StyleSheet.create({
 	card: {
 		flex: 1,
@@ -70,29 +74,27 @@ const styles = StyleSheet.create({
 		flex: 1, 
 		flexDirection: 'row',
 	},
-	cardImage: {
-		resizeMode: "cover",
-		height: 170,
-	},
 	cardContent: {
 		flex: 1,
 		backgroundColor: 'white',
+		flexDirection: 'row',
 		elevation: 20,
 	},
 	rightWhite: {
-		width: 50,
+		width: CARD_OFFSET_X,
+		marginTop: CARD_OFFSET_Y,
 		backgroundColor: 'white',
 	},
 	bottomWhite: {
-		height: 50,
-		marginLeft: 50,
+		height: CARD_OFFSET_Y,
+		marginLeft: CARD_OFFSET_X,
 		backgroundColor: 'white',
 		flexDirection: 'row',
 		alignItems: 'center',
 	},
 	cardCorner: {
-		height: 50,
-		width: 50,
+		height: CARD_OFFSET_Y,
+		width: CARD_OFFSET_Y,
 		backgroundColor: 'white',
 		position: 'absolute',
 		top: 0,
@@ -100,17 +102,18 @@ const styles = StyleSheet.create({
 		zIndex: 4,
 		justifyContent: 'center',
 		alignItems: 'center',
-		elevation: 5,
 	},
 	linkText: {
 		fontSize: 20,
 		marginLeft: 20,
+		color: 'black',
 	},
 	linkTitle: {
 		textAlign: 'right',
 		flex: 1,
 		marginRight: 20,
-		fontSize: 24,
+		fontSize: 16,
+		color: 'black',
 	}
 });
 
@@ -129,5 +132,8 @@ Card.defaultProps = {
 	backgroundColor: 'white',
 	showCorner: false,
 	cornerText: '',
-	cornerTextStyle: {},
+	cornerTextStyle: {
+		color: 'black',
+		fontSize: 16,
+	},
 };

@@ -23,18 +23,20 @@ const styles = StyleSheet.create({
 		width: buttonSize,
 		height: buttonSize,
 		alignSelf: 'flex-end',
-		margin: 10,
+		margin: 20,
 		backgroundColor: '#ff458f',
 		borderRadius: 0,
 		elevation: 55,
 	},
 	searchButtonContainer: {
 		flex: 1,
+		alignItems: 'flex-end',
 		justifyContent: 'flex-end',
+		flexDirection: 'row',
 	},
 	buttonImage: {
-		width: 30,
-		height: 30,
+		width: 20,
+		height: 20,
 	},
 });
 
@@ -56,6 +58,9 @@ class Search extends Component {
 	}
 
 	render() {
+		var searchButtonStyles = this.state.searching ? 
+			{ flex: 1, margin: 0 } : {};
+
 		return (
 			<View style={[SharedStyles.fullScreenComponent]}>
 				<SearchOverlay 
@@ -65,13 +70,13 @@ class Search extends Component {
 				<View style={styles.searchButtonContainer}>
 					<Button 
 						onPress={ () => {this.searchPressed()} }
-						style={styles.searchButton}>
+						style={[styles.searchButton, searchButtonStyles]}>
 						<Image 
 							style={styles.buttonImage}
-							source={require('VeganFriendly/app/res/img/magnifying-glass.png')}/>
+							source={require('VeganFriendly/app/res/img/icon-search.png')}/>
 					</Button>
-					<KeyboardSpacer/>
 				</View>
+				<KeyboardSpacer/>
 			</View>
 		);
 	}
