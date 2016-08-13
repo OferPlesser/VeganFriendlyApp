@@ -10,6 +10,8 @@ const {
 
 import Search from 'VeganFriendly/app/components/Search';
 import Card from 'VeganFriendly/app/containers/Card';
+import RecipeCard from 'VeganFriendly/app/containers/Recipe'
+import Images from '../styles/imgs/recipesImages'
 
 const buttonSize = 80;
 
@@ -50,16 +52,12 @@ class Home extends Component {
 	render() {
 		return (
 			<View style={[styles.fullScreenComponent, styles.cardContainer]}>
-				<Card 
-					style={ styles.card } 
-					linkText={ 'מתכונים' } 
-					cornerText={ '104' }
-					showCorner={ true }
-					onPress={ () => {console.log('heeeyyy')} }>
-					<Image
-						source={require('VeganFriendly/app/res/img/food.jpeg')}
-						style={{height: 170}}/>
-				</Card>
+				<RecipeCard></RecipeCard>
+				<RecipeCard 
+					userName="אורית פרחי" 
+					foodDesc="עוגת גבינה ופירורים"
+					userPicture={Images['avatar'][1]}
+					foodImage={Images['button'][1]}></RecipeCard>
 			</View>
 		);
 	}
