@@ -13,6 +13,8 @@ const {
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Button from 'VeganFriendly/app/components/Button';
+import SearchOverlay from './SearchOverlay'
+import SharedStyles from 'VeganFriendly/app/styles'
 
 const buttonSize = 60;
 
@@ -24,38 +26,15 @@ const styles = StyleSheet.create({
 		margin: 10,
 		backgroundColor: '#ff458f',
 		borderRadius: 0,
-		elevation: 5,
+		elevation: 55,
 	},
 	searchButtonContainer: {
 		flex: 1,
 		justifyContent: 'flex-end',
 	},
-	fullScreenComponent: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
-		top: 0,
-	},
-	searchTextbox: {
-		textAlign: 'right',
-		fontSize: 60,
-		color: '#333',
-		padding: 20,
-		paddingTop: 0,
-		flex: 1,
-		fontFamily: 'Heebo',
-	},
 	buttonImage: {
 		width: 30,
 		height: 30,
-	},
-	searchTextTitle: {
-		fontFamily: 'Heebo-Regular',
-		color: '#ccc',
-		fontSize: 26,
-		alignSelf: 'flex-end',
-		height: 70,
 	},
 });
 
@@ -76,38 +55,23 @@ class Search extends Component {
 		});
 	}
 
-	_renderSearchView() {
-		if (this.state.searching) {
-			return (
-				<View style={{flex: 5}}>
-					<Text style={styles.searchTextTitle}>חפש הכל</Text>
-					<TextInput
-						underlineColorAndroid='rgba(0,0,0,0)'
-						autoFocus= { true }
-						blurOnSubmit={ true }
-						returnKeyType={ 'search' }
-						multiline={ true }
-						style={[styles.searchTextbox]}/>
-				</View>
-			);
-		}
-		return null;
-	}
-
 	render() {
 		return (
-			<View style={[{backgroundColor: 'rgba(256,256,256,0.8)'}, styles.fullScreenComponent]}>
-				{this._renderSearchView()}
+			<View style={[SharedStyles.fullScreenComponent]}>
+				<SearchOverlay 
+					visible={this.state.searching} 
+					backgroundStyle={{backgroundColor: 'rgba(255,255,255,0.9)'}} 
+					titleText={'חפש הכל'}/>
 				<View style={styles.searchButtonContainer}>
 					<Button 
-						style={styles.searchButton} 
-						onPress={ () => { this.searchPressed() } }>
+						onPress={ () => {this.searchPressed()} }
+						style={styles.searchButton}>
 						<Image 
 							style={styles.buttonImage}
 							source={require('VeganFriendly/app/res/img/magnifying-glass.png')}/>
 					</Button>
+					<KeyboardSpacer/>
 				</View>
-				<KeyboardSpacer />
 			</View>
 		);
 	}

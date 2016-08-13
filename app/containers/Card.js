@@ -125,7 +125,6 @@ Card.propTypes = {
 
 Card.defaultProps = {
 	onPress: () => {},
-	source: 'VeganFriendly/app/res/img/food.jpeg',
 	textStyle: {},
 	backgroundColor: 'white',
 	showCorner: false,
